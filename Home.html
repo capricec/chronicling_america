@@ -1,0 +1,1125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		<style type ="text/css">
+		
+    div#charts{
+      position:absolute;
+      left:205px;
+      width: 720px;
+      top:3px;
+    } 
+    
+    div#chart1, div#chart2, div#chart3, div#chart4, div#chart5, div#chart6, div#chart7, div#chart8, div#chart9,
+    div#chart10,div#chart11,div#chart12,div#chart13,div#chart14,div#chart15{
+      float:left;
+    }
+    
+  
+    
+      body{
+      font-family: Gill Sans, Arial,sans-serif;
+      }
+      
+      #logoback{
+        position:absolute;
+        top: 4px;
+        width:200px;
+        height: 40px;
+        left:0px;
+        background-color: none;
+      }
+    
+    
+		  h1{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 20px;
+        font-weight: normal;
+        position: relative;
+        left: 5px;
+        top: 0px;
+        width:200px;
+        text-align: left;
+        color: #0C4268;
+      }   
+      
+      h8{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 20px;
+        font-weight: normal;
+        position: absolute;
+        left: 123px;
+        top: 13px;
+        width:200px;
+        text-align: left;
+        color: #DD3704;
+      }  
+      
+      h4{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 10.5px;
+        font-weight: normal;
+        position: relative;
+        left: 13px;
+        right: 3px;
+        top: -8px;
+        width:184px;
+        text-align: left;
+        color: #8C8888;
+      
+      } 
+      
+      h5{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 8px;
+        font-weight: normal;
+        position: absolute;
+        left: 76px;
+        right: 3px;
+        top: 365px;
+        text-align: left;
+        color: #8C8888;
+      } 
+      
+      h2{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 10px;
+        font-weight: normal;
+        position: relative;
+        left: 10px;
+        right: 3px;
+        top: 50px;
+        width:184px;
+        text-align: left;
+        color: #8C8888;
+      }   
+      
+      h3{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 10px;
+        font-weight: normal;
+        position: relative;
+        left: 8px;
+        top:30px;
+        width:200px;
+        text-align: left;
+        color: #8C8888;
+        letter-spacing: -0.2px;
+      } 
+      
+      .verticalline{
+        width: 3px;
+        height: 90px;
+        position: absolute;
+        top:258px;
+        left:555px;
+        border-left: solid 2px #F7F1EF;
+      }
+      
+      .horline{
+        width: 50px;
+        height: 100px;
+        position: absolute;
+        top:300px;
+        left:530px;
+        border-top: solid 2px #F7F1EF;
+      }
+      
+      h6{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 7px;
+        font-weight: normal;
+        position: absolute;
+        left: 553px;
+        top: 230px;
+        text-align: left;
+        color: #D6D0C0;
+        opacity: 0.5;
+      
+      }
+      
+      
+      h9{
+        font-family:  Gill Sans, Arial,sans-serif;
+        font-size: 8px;
+        font-weight: normal;
+        position: absolute;
+        left: 130px;
+        top: 470px;
+        text-align: left;
+        color: #8C8888;
+      
+      } 
+    
+			.axis path,
+			.axis line,
+      rect.lgdwrap {
+				fill: none;
+				stroke: lightgrey;
+				shape-rendering: crispEdges;
+			}
+      
+	    rect.lgd{
+        shape-rendering: crispEdges;
+      }
+        
+      
+    
+			.label text {
+				font-size: 8px;
+			}
+		
+			.axis text {
+				fill:#8C8888;
+				font-size: 6px;
+			}
+			
+      .legend text{
+        fill: #8C8888;
+        font-size: 7.5px;
+      }
+      
+      text.lgdtxt{
+      fill: #0C4268;
+      letter-spacing: 0px;
+    }
+      .legend .axis path,
+			.legend .axis line{
+        fill: none;
+        stroke: #F7F1EF;
+        shape-rendering: crispEdges;
+      }
+      
+      text.text1, text.text2{
+        fill: #0C4268;
+      }
+      
+      input:focus {outline:0;}
+      
+      #option{
+        position:absolute;
+        top: 0px;
+        width:200px;
+        height: 605px;
+        left:0px;
+        background-color: #F7F1EF;
+        border-bottom: 1px solid #DDD8D7;
+      }
+      
+      
+      .legend{
+        position:relative;
+        left: 10px;
+        top: 35px;
+      }
+      
+      #lgdback{
+        position:absolute;
+        top: 327px;
+        width:200px;
+        height: 165px;
+        left:0px;
+        background-color: #FDFBFA;
+        
+      }
+  
+      .button{
+        font-family: Gill Sans, Arial,sans-serif;
+        width: 200px;
+        padding-top: 3px;
+        background: white;
+        text-align: center;
+        position: relative;
+        left:0px;
+        top:0px;
+        font-size: 10.5px;
+        color: #8C8888;
+        border:1px solid white;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+      }
+
+      .activeItem {
+        color: white;
+        background: #DD3704;
+        border: 2px solid #DD3704;
+      }
+         
+    
+			
+    	</style>
+    </head>
+	
+	
+	<body>
+  
+
+<!-- Buttons for interaction-->
+    <div id = "buttons">
+      <div id="option">
+                <div id=logoback></div>
+                <h1> RORSCHACH</h1>
+                <h8> TRENDS</h8>
+                <h4> What can newspapers reveal to us about literary, musical, religious, and popular culture of 19th and 20th century America?</h4>
+
+                      
+          
+                <input name="updateButton2"
+                            class = "button"
+                             type="button"
+                            value="CIRCUS + BASEBALL"
+                            id = "circus"
+                            onclick="updateGraph(this,this.id)" />     
+          
+        
+                      
+          <input name="UpdateButton4"
+                      class = "button"
+                      type="button"
+                      value= "BRASS BAND + THE BLUES"
+                      id= "cornet"
+                      onclick="updateGraph(this,this.id)" />  
+          
+
+                      <input name="updateButton5"
+                                  class = "button"
+                                  type="button"
+                                  value="PSYCHOLOGY + HYPNOTISM"
+                                  id = "psychology"
+                                  onclick="updateGraph(this,this.id)" />
+          
+                                   
+          <input name="UpdateButton3"
+                      class = "button"
+                      type="button"
+                      value= "EVANGELICAL + MORMON"
+                      id= "evangelical"
+                      onclick="updateGraph(this,this.id)" />  
+                      
+          <input name="updateButton1"
+                      class = "button activeItem"
+                      type="button"
+                      value="BICYCLE + AUTOMOBILE"
+                      id = "bicycle"
+                      onclick="updateGraph(this,this.id)" />     
+                               
+
+          <input name="UpdateButton3"
+                      class = "button"
+                      type="button"
+                      value= "CREATIONISM + DARWINISM"
+                      id= "creationism"
+                      onclick="updateGraph(this,this.id)" />  
+                      
+                      
+          <input name="updateButton2"
+                      class = "button"
+                       type="button"
+                      value="HOOP SKIRT + KIMONO"
+                      id = "hoop+skirt"
+                      onclick="updateGraph(this,this.id)" />      
+      
+
+          <input name="updateButton2"
+                      class = "button"
+                       type="button"
+                      value="TWAIN + DICKENS"
+                      id = "mark+twain"
+                      onclick="updateGraph(this,this.id)" />
+                    
+
+          <input name="UpdateButton4"
+                      class = "button"
+                      type="button"
+                      value= "OPERA + THEATER"
+                      id= "opera"
+                      onclick="updateGraph(this,this.id)" />  
+                                
+                                                    
+                                     
+          <div id="lgdback"> </div>   
+          
+          <div id = "legend"></div>       
+            <h2> The National Endowment for the Humanities and the Library of Congress have digitized over ten million pages of newspapers published between 1836 and 1922, from towns and cities across the United States. Explore the entire collection <a href="http://chroniclingamerica.loc.gov/">here</a></h2>     
+    </div>
+		</div>
+    <h9> Hover to see trend </br> Click to view pages </h9>
+    <h6> N </h6>
+    <div class="verticalline"></div>
+    <div class = "horline"></div>
+    <div id = "charts">
+      
+      <div id = "chart1"></div>
+      <div id = "chart2"></div>
+      <div id = "chart3"></div>
+      <div id = "chart4"></div>
+      <div id = "chart5"></div>
+      <div id = "chart6"></div>
+      <div id = "chart7"></div>
+      <div id = "chart8"></div>
+      <div id = "chart9"></div>
+      <div id = "chart10"></div>
+      <div id = "chart11"></div>
+      <div id = "chart12"></div>
+      <div id = "chart13"></div>
+      <div id = "chart14"></div>
+      <div id = "chart15"></div>
+      <div id = "chart16"></div>
+		</div>
+		
+		
+		<!-- Javascript -->
+		<script type="text/javascript">
+
+	
+		// Global D3 variables:
+		
+    var Total;
+    var datamax;
+		
+		var padding = 25;
+		var h = 150;
+		var w = 180;
+    var ymax = 0.4;
+    var outerRadius = h / 2;
+    var innerRadius = 12;
+    var innerRadius2 = 30;
+    var datelgd = [1922];
+		var datelgd2 = [1836, 1860, 1880, 1900, 1922];
+    
+		var xScale;
+		var yScale;
+		
+		var xAxis;
+		var yAxis;
+    
+    var lgd, svg;
+    
+    var angle, radius;
+    
+    var line, line2, area, area2;
+    var linelgd, line2lgd, arealgd, area2lgd;
+    var svgStorage = {};
+    
+    var priority_order = ['bicycle', "automobile", ""];
+    //var priority_order = ['oil+well', "national+park", ""];
+    //var priority_order = ['hypnotism', "homeopathic", ""];
+    //var priority_order = ['democrat', "republican", ""];
+    //var priority_order = ["opera", "theater+theatre", ""];
+//   var priority_order = ["communism", "capitalism", ""];
+//  var priority_order = ["depression", "asylum", ""];
+//   var priority_order = ["creationism", "evolution", ""];
+//   var priority_order = ["riot", "protest", ""];
+//  var priority_order = ["mormonism", "christian+science", ""];
+  // var priority_order =["darwinism", "christian+science", ""];
+//   var priority_order =["mark+twain", "christian+science", ""];
+//   var priority_order = ["darwin", "christian+science", ""];
+//   var priority_order = ["mark+twain", "charles+dickens", ""];
+//   var priority_order = ["scalawag", "adventuress", ""];
+//   var priority_order = ["evangelicalism", "mormonism", ""];
+//  var priority_order = ["liberalism", "communism", ""];
+//   var priority_order = ["freud", "hypnotism", ""];
+//   var priority_order = ["banjo", "brass+band", ""];
+  //var priority_order = ["scalawag", "carpetbagger", ""];
+//   var priority_order = ["protestant", "catholic", ""];
+//   var priority_order = ["evangelical", "mormon", ""];
+//   var priority_order = ["psychology", "hypnotism", ""];
+//   var priority_order = ["cravat", "bloomer", ""];
+//   var priority_order = ["cravat", "corset", ""];
+//   var priority_order = ["trumpet", "banjo", ""];
+//  var priority_order = ["hoop+skirt", "kimono", ""];
+//  var priority_order = ["cornet", "banjo", ""];
+//  var priority_order = ["cravat", "hoop+skirt", ""];
+  //var priority_order = ["bustle", "kimono", ""];
+  //var priority_order = ["circus", "baseball", ""];
+//  var priority_order = ["irish", "chinese", ""];
+  //var priority_order = ["public+school", "asylum", ""];
+  //  var priority_order = ["gold+mine", "oil+well", ""];
+  //var priority_order = ["homesteader", "immigrant", ""];
+  //var priority_order = ["abolitionist", "suffragist", ""];
+//  var priority_order = ["temperance", "prohibition", ""];
+
+//var priority_order = ["opera", "film", ""];
+//var priority_order = ["darwin", "christian+science", ""];
+//var priority_order = ["crinoline", "kimono", ""];
+//var priority_order = ["opera", "motion+picture", ""];
+    
+    var colors = ["#D62300", "#F7B900"];
+  //  var colors = ["#024C82", "#FF6C3F"];
+    var prevItem = document.getElementById("bicycle");
+    
+
+		//Loading CSV and drawing the chart
+		d3.json( priority_order[0]+".json", function(data){
+          
+      //console.log(data);
+      
+      Total = d3.nest()
+      .key(function(d){ return d.state; })
+      .key(function(d){ return d.key; })
+      .sortValues(function(a,b) {  return priority_order.indexOf(a) - priority_order.indexOf(b); })
+      .entries(data);  
+      
+      angle = d3.time.scale()
+      .range([0, 2 * Math.PI])
+      .domain([1835,1922]);
+
+      radius = d3.scale.linear()
+      .range([innerRadius, outerRadius])
+      .domain([0,ymax]);
+      
+      line = d3.svg.line.radial()
+      .interpolate("monotone")
+      .angle(function(d) { return angle(d.key); })
+      .radius(function(d) { if(d.values[2].count == 0) { return radius(0);} else {return radius(d.values[0].count/d.values[2].count); };});
+      
+      line2 = d3.svg.line.radial()
+      .interpolate("monotone")
+      .angle(function(d) { return angle(d.key); })
+      .radius(function(d) { if(d.values[2].count == 0) { return radius(0);} else {return radius(d.values[1].count/d.values[2].count); };});
+      
+      area = d3.svg.area.radial()
+      .interpolate("monotone")
+      .angle(function(d) { return angle(d.key); })
+      .innerRadius(radius(0))
+      .outerRadius(function(d) { if(d.values[2].count == 0) { return radius(0);} else {return radius(d.values[0].count/d.values[2].count); };});
+      
+      area2 = d3.svg.area.radial()
+      .interpolate("monotone")
+      .angle(function(d) { return angle(d.key); })
+      .innerRadius(radius(0))
+      .outerRadius(function(d) { if(d.values[2].count == 0) { return radius(0);} else {return radius(d.values[1].count/d.values[2].count); };});
+          
+    
+    radiuslgd = d3.scale.linear()
+    .range([innerRadius2, outerRadius])
+    .domain([0,ymax]);            
+          
+    linelgd = d3.svg.line.radial()
+    .interpolate("monotone")
+    .angle(function(d) { return angle(d.key); })
+    .radius(function(d) { if(d.values[2].count == 0) { return radiuslgd(0);} else {return radiuslgd(d.values[0].count/d.values[2].count); };});
+    
+    line2lgd = d3.svg.line.radial()
+    .interpolate("monotone")
+    .angle(function(d) { return angle(d.key); })
+    .radius(function(d) { if(d.values[2].count == 0) { return radiuslgd(0);} else {return radiuslgd(d.values[1].count/d.values[2].count); };});
+    
+    arealgd = d3.svg.area.radial()
+    .interpolate("monotone")
+    .angle(function(d) { return angle(d.key); })
+    .innerRadius(radiuslgd(0))
+    .outerRadius(function(d) { if(d.values[2].count == 0) { return radiuslgd(0);} else {return radiuslgd(d.values[0].count/d.values[2].count); };});
+    
+    area2lgd = d3.svg.area.radial()
+    .interpolate("monotone")
+    .angle(function(d) { return angle(d.key); })
+    .innerRadius(radiuslgd(0))
+    .outerRadius(function(d) { if(d.values[2].count == 0) { return radiuslgd(0);} else {return radiuslgd(d.values[1].count/d.values[2].count); };});
+        
+          
+         lgd = d3.select("#legend").append("svg")
+            .attr("class", "legend")
+            .attr("width", 190)
+            .attr("height", 170);      
+              
+          
+          lgd.append('a')
+          .attr("class", "a1")
+          .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[0] + "&proxdistance=5&rows=20&searchType=advanced")
+          .attr("target", "_blank")
+          .append("path")
+          .attr("class", "area")
+          .attr("transform", "translate(" + 190/ 2 + "," + 100 + ")")
+          .attr("d", arealgd(Total[9].values))
+          .style("fill",colors[0])
+          .style("opacity", 0.4)
+          .on('mouseover', function (d,i){
+                //Dim all blobs
+                d3.selectAll("path.area2")
+                  .transition().duration(200)
+                  .style("opacity", 0.1); 
+                  
+                  d3.selectAll("path.line2")
+                    .transition().duration(200)
+                    .style("opacity", 0.6);
+                //Bring back the hovered over blob
+                d3.selectAll("path.area")
+                  .transition().duration(200)
+                  .style("opacity", 0.8);
+                  
+            })
+            .on('mouseout', function(){
+                //Bring back all blobs
+                d3.selectAll("path.area2")
+                  .transition().duration(200)
+                  .style("opacity", 0.4);
+                  
+                  d3.selectAll("path.line2")
+                    .transition().duration(200)
+                    .style("opacity", 0.4);
+                  
+                d3.selectAll("path.area")
+                  .transition().duration(200)
+                  .style("opacity", 0.4);
+              });
+          
+          lgd.append("path")
+              .attr("class", "line")
+              .attr("transform", "translate(" + 190/ 2 + "," + 100 + ")")
+              .attr("d", linelgd(Total[9].values))
+              .attr("fill", "none")
+              .attr("stroke", colors[0])
+              .style("opacity", 0.4);
+          
+          lgd.append('a')
+          .attr("class", "a2")
+          .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[1] + "&proxdistance=5&rows=20&searchType=advanced")
+          .attr("target", "_blank")
+          .append("path")
+          .attr("transform", "translate(" + 190/ 2 + "," + 100 + ")")
+          .attr("class", "area2")
+          .attr("d", area2lgd(Total[9].values))
+          .style("fill",colors[1])
+          .style("opacity", 0.4)
+          .on('mouseover', function (d,i){
+                //Dim all blobs
+                d3.selectAll("path.area")
+                  .transition().duration(200)
+                  .style("opacity", 0.1); 
+                  
+                d3.selectAll("path.line")
+                  .transition().duration(200)
+                  .style("opacity", 0.6); 
+                //Bring back the hovered over blob
+                d3.selectAll("path.area2")
+                  .transition().duration(200)
+                  .style("opacity", 0.8);
+            })
+            .on('mouseout', function(){
+                //Bring back all blobs
+                d3.selectAll("path.area")
+                  .transition().duration(200)
+                  .style("opacity", 0.4);
+                  
+                  d3.selectAll("path.line")
+                    .transition().duration(200)
+                    .style("opacity", 0.4);
+                  
+                d3.selectAll("path.area2")
+                  .transition().duration(200)
+                  .style("opacity", 0.4);
+              }); ;
+
+          lgd.append("path")
+              .attr("class", "line2")
+              .attr("transform", "translate(" + 190/ 2 + "," + 100 + ")")
+              .attr("d", line2lgd(Total[9].values))
+              .attr("fill", "none")
+              .attr("stroke", colors[1])
+              .style("opacity", 0.4);
+              
+          lgd.append("circle")
+              .attr("cx", 95)
+              .attr("cy", 100)
+              .attr("r", 30)
+              .attr("fill", "white")
+              .attr("stroke", "white");
+          
+          
+        lgd.selectAll(".axis")
+        .data(datelgd)
+        .enter().append("g")
+        .attr("class", "axis")
+        .attr("transform", function(d) { return  "translate(" + 190/ 2 + "," + 100 + ") rotate(" + angle(d) * 180 / Math.PI + ")"; })
+        .call(d3.svg.axis()
+        .tickFormat(d3.format("%"))
+        .tickSize(4,0)
+        .tickPadding(0)
+        .ticks(4)
+        .scale(radius.copy().range([-innerRadius2, -outerRadius]))
+        .orient("right"))
+        .attr("fill", "black");
+        
+      lgd.selectAll(".axis .tick")
+      .filter(function (d) { return d === 0;  })
+      .remove();
+      
+      lgd.append("path")
+	     .attr("id", "wavy") //very important to give the path element a unique ID to reference later
+	      .attr("d", "M 95,72 A 28,28 0 0,1 95,128") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+	       .style("fill", "none")
+	        .style("stroke", "none");
+          
+          lgd.append("path")
+    	     .attr("id", "wavy2") //very important to give the path element a unique ID to reference later
+    	      .attr("d", "M 95,128 A 28,28 0 0,1 95,72") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+    	      .style("fill", "none")
+    	      .style("stroke", "none");  
+            
+            lgd.append("path")
+             .attr("id", "wavy3") //very important to give the path element a unique ID to reference later
+              .attr("d", "M 67,100 A 28,28 0 0,0 123,100") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+              .style("fill", "none")
+              .style("stroke", "none");  
+        
+              lgd.append("path")
+        	     .attr("id", "wavy4") //very important to give the path element a unique ID to reference later
+        	      .attr("d", "M 115,78 A 28,29 0 0,1 105,128") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+        	       .style("fill", "none")
+        	        .style("stroke", "black");
+                  
+                  lgd.append("path")
+                   .attr("id", "wavy5") //very important to give the path element a unique ID to reference later
+                    .attr("d", "M 74,78 A 25,29 0 0,0 86,129") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+                     .style("fill", "none")
+                      .style("stroke", "black");
+          
+        
+        lgd.append("text")
+        //.attr("startOffset", "50%")	
+        .attr("x", 0)   //Move the text from the start angle of the arc
+        .attr("dy", 0) //Move the text down	
+         .append("textPath") //append a textPath to the text element
+      	.attr("xlink:href", "#wavy") //place the ID of the path here
+      	//.style("text-anchor","middle") //place the text halfway on the arc
+      	.text('|')
+        .style("font-size", "4px")
+        .style("stroke", "black");
+        
+        lgd.append("text")
+        //.attr("startOffset", "50%")	
+        .attr("x", 4)   //Move the text from the start angle of the arc
+        .attr("dy", 4) //Move the text down	
+         .append("textPath") //append a textPath to the text element
+      	.attr("xlink:href", "#wavy") //place the ID of the path here
+      	.style("letter-spacing", "0.1px")
+        .style("fill", "black")
+      	.text("1836");
+
+        lgd.append("text")
+        //.attr("startOffset", "50%")	
+        .attr("x", 68)   //Move the text from the start angle of the arc
+        .attr("dy", 4) //Move the text down	
+         .append("textPath") //append a textPath to the text element
+        .attr("xlink:href", "#wavy2") //place the ID of the path here
+      .style("letter-spacing", "0.1px")
+        .text("1922")
+        .style("fill", "black");
+        
+        lgd.append("text")
+        //.attr("startOffset", "50%")	
+        .attr("x", 36)   //Move the text from the start angle of the arc
+        .attr("dy", 1) //Move the text down	
+         .append("textPath") //append a textPath to the text element
+        .attr("xlink:href", "#wavy3") //place the ID of the path here
+      //  .style("text-anchor","end") //place the text halfway on the arc
+        .style("letter-spacing", "0.1px")
+        .text("1880")
+        .style("fill", "black");
+              
+          
+        lgd.append("text")
+        .attr("x", 85)
+        .attr("y", 95)
+        .attr("dy", ".75em")
+        .attr("class", "lgdtxt")
+        .style("font-size", 9.5 )
+      //  .style("font-family", "arial")
+        .text("Year");
+          
+          
+          lgd.append("text")
+          .attr("x", 98)
+          .attr("y", 8)
+          .attr("dy", ".75em")
+          .attr("class", "lgdtxt")
+          .style("font-size", 9.5 )
+        //  .style("font-family", "arial")
+          .text("Newspaper Page Hits");
+          
+          
+          lgd.append("rect")
+          .attr("class", "rect1")
+          .attr("x", 10)
+          .attr("y", 18)
+          .attr("width", 8)
+          .attr("height", 8)
+          .style("fill", colors[0])
+          .style("opacity", "0.8");
+          
+          lgd.append("text")
+          .attr("class", "text1")
+          .attr("x", 20)
+          .attr("y", 25)
+          .style("font-size", 8)
+          .text(priority_order[0]);
+          
+          lgd.append("rect")
+          .attr("class", "rect2")
+          .attr("x", 10)
+          .attr("y", 28)
+          .attr("width", 8)
+          .attr("height", 8)
+          .style("fill", colors[1])
+          .style("opacity", "0.8");
+          
+          lgd.append("text")
+          .attr("class", "text2")
+          .attr("x", 20)
+          .attr("y", 35)
+          .style("font-size", 8)
+          .text(priority_order[1]);
+          
+      
+      // datamax = d3.max(Total, function(d){ return d.values.count;});
+			
+      for(var k =0; k < 16; k++){
+    
+        //console.log(Total[k]);
+        //datamax = d3.max(Total[k], function(d){ return d.values[0].count;});
+        console.log(Total[k]);
+        
+        
+      
+        svgStorage['svg'+k] = d3.select("#chart" + (k+1) ).append("svg")
+            .attr("width", w)
+            .attr("height", h);
+            
+            
+            svgStorage['svg'+k].append("path")
+      	     .attr("id", "thirtysix") //very important to give the path element a unique ID to reference later
+      	      .attr("d", "M 90,60 A 28,28 0 0,1 90,128") //Notation for an SVG path, from bl.ocks.org/mbostock/2565344
+      	       .style("fill", "none")
+      	        .style("stroke", "none");
+                
+                  svgStorage['svg'+k].append("text")
+                //.attr("startOffset", "50%")	
+                .attr("x", 0)   //Move the text from the start angle of the arc
+                .attr("dy",4) //Move the text down	
+                 .append("textPath") //append a textPath to the text element
+                .attr("xlink:href", "#thirtysix") //place the ID of the path here
+                //.style("text-anchor","middle") //place the text halfway on the arc
+                .text("|")
+                .style("stroke", "black")
+                .style("font-size", "5px");
+              
+              svgStorage['svg'+k].append("a")
+              .attr("class", "a1")
+              .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=" + Total[k].key + "&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[0] + "&proxdistance=5&rows=20&searchType=advanced")
+              .attr("target", "_blank")
+              .append("path")
+              .attr("class", "area")
+              .attr("transform", "translate(" + w/ 2 + "," + h / 2 + ")")
+              .attr("d", area(Total[k].values))
+              .style("fill",colors[0])
+              .style("opacity", 0.4)
+              .on('mouseover', function (d,i){
+              			//Dim all blobs
+              			d3.selectAll("path.area2")
+              				.transition().duration(200)
+              				.style("opacity", 0.1); 
+                      
+                      d3.selectAll("path.line2")
+                				.transition().duration(200)
+                				.style("opacity", 0.6);
+              			//Bring back the hovered over blob
+              			d3.selectAll("path.area")
+              				.transition().duration(200)
+              				.style("opacity", 0.8);
+                })
+                .on('mouseout', function(){
+              			//Bring back all blobs
+              			d3.selectAll("path.area2")
+              				.transition().duration(200)
+              				.style("opacity", 0.4);
+                      
+                      d3.selectAll("path.line2")
+                				.transition().duration(200)
+                				.style("opacity", 0.4);
+                      
+                    d3.selectAll("path.area")
+              				.transition().duration(200)
+              				.style("opacity", 0.4);
+              		});
+              
+              
+              svgStorage['svg'+k].append("path")
+                  .attr("class", "line")
+                  .attr("transform", "translate(" + w/ 2 + "," + h / 2 + ")")
+                  .attr("d", line(Total[k].values))
+                  .attr("fill", "none")
+                  .attr("stroke", colors[0])
+                  .style("opacity", 0.4);
+              
+              svgStorage['svg'+k].append('a')
+              .attr("class", "a2")
+              .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=" + Total[k].key + "&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[1] + "&proxdistance=5&rows=20&searchType=advanced")
+              .attr("target", "_blank")
+              .append("path")
+              .attr("class", "area2")
+              .attr("transform", "translate(" + w/ 2 + "," + h / 2 + ")")
+              .attr("id", function(){return k;})
+              .attr("d", area2(Total[k].values))
+              .style("fill",colors[1])
+              .style("opacity", 0.4) 
+              .on('mouseover', function (d,i){
+              			//Dim all blobs
+              			d3.selectAll("path.area")
+              				.transition().duration(200)
+              				.style("opacity", 0.1); 
+                      
+                    d3.selectAll("path.line")
+              				.transition().duration(200)
+              				.style("opacity", 0.6); 
+              			//Bring back the hovered over blob
+              			d3.selectAll("path.area2")
+              				.transition().duration(200)
+              				.style("opacity", 0.8);
+                })
+                .on('mouseout', function(){
+              			//Bring back all blobs
+              			d3.selectAll("path.area")
+              				.transition().duration(200)
+              				.style("opacity", 0.4);
+                      
+                      d3.selectAll("path.line")
+                				.transition().duration(200)
+                				.style("opacity", 0.4);
+                      
+                    d3.selectAll("path.area2")
+              				.transition().duration(200)
+              				.style("opacity", 0.4);
+              		});
+
+              svgStorage['svg'+k].append("path")
+                  .attr("class", "line2")
+                  .attr("transform", "translate(" + w/ 2 + "," + h / 2 + ")")
+                  .attr("d", line2(Total[k].values))
+                  .attr("fill", "none")
+                  .attr("stroke", colors[1])
+                  .style("opacity", 0.4);
+              
+                  
+                svgStorage['svg'+k].append("text")
+                .attr("x", w/2.5)	
+                .attr("y", h-15)
+                .attr("class", "lgdtxt")
+                .style("font-size", 9)
+                .style("fill", "#8C8888")
+                .text(Total[k].key);
+                 
+                console.log(svgStorage);   
+        };  
+            
+    });
+        
+        
+        
+     
+        
+        
+        // // Function to update graph	on button click			
+      function updateGraph(t,x){
+        
+        if(prevItem != null){ prevItem.className = prevItem.className.replace(" activeItem", "");}
+         t.className += " activeItem";
+         prevItem = t;
+         
+         if(x == "bicycle"){
+           priority_order = ['bicycle', "automobile", ""];
+           colors = ["#D62300", "#F7B900"];
+           ymax = 0.4;
+         } else if (x == "mark+twain") {
+           priority_order = ['mark+twain', "charles+dickens", ""];
+           colors = [ "#F7B900", "#00B5A8"];
+           ymax = 0.08;
+         } else if (x == "opera") {
+           priority_order = ['opera', "theater", ""];
+           colors = ["#989B7A", "#FF7A2D"];
+           ymax = 0.5;
+         }else if (x == "evangelical") {
+           priority_order = ['evangelical', "mormon", ""];
+           colors = ["#0075C9", "#FF7A2D"];
+           ymax = 0.25;
+         }else if (x == "psychology") {
+           priority_order = ['psychology', "hypnotism", ""];
+           colors = [ "#989B7A", "#00B5A8"];
+           ymax = 0.05; 
+         }else if (x == "hoop+skirt") {
+           priority_order = ['hoop+skirt', "kimono", ""];
+           colors = [ "#FF7A2D", "#272A94"];
+           ymax = 0.25;
+         }else if (x == "creationism") {
+           priority_order = ["creationism", "darwinism", ""];
+           colors = [ "#68AE2A", "#0075C9"];
+           ymax = 0.25;
+         } else if (x == "cornet") {
+             priority_order = ['cornet', "banjo", ""];
+             colors = [ "#F7B900", "#272A94"];
+             ymax = 0.20; 
+          } else if (x == "cravat") {
+               priority_order = ['cravat', "hoop+skirt", ""];
+               colors = [ "#F7B900", "#00B5A8"];
+               ymax = 0.4; 
+           } else if (x == "circus") {
+                priority_order = ['circus', "baseball", ""];
+                colors = [ "#00B5A8", "#D62300"];
+                ymax = 0.35; };
+         
+         d3.json( x +".json", function(data){
+               
+           //console.log(data);
+           
+           Total = d3.nest()
+           .key(function(d){ return d.state; })
+           .key(function(d){ return d.key; })
+           .sortValues(function(a,b) {  return priority_order.indexOf(a) - priority_order.indexOf(b); })
+           .entries(data);  
+      	
+        console.log(Total);
+        
+          radius = d3.scale.linear()
+          .range([innerRadius, outerRadius])
+          .domain([0,ymax]);
+          
+          radiuslgd = d3.scale.linear()
+          .range([innerRadius2, outerRadius])
+          .domain([0,ymax]);
+         
+           
+        lgd.selectAll(".axis")
+        .data(datelgd)
+        .transition()			
+         .duration(500)
+        .attr("transform", function(d) { return  "translate(" + 190/ 2 + "," + 100 + ") rotate(" + angle(d) * 180 / Math.PI + ")"; })
+        .call(d3.svg.axis()
+        .tickFormat(d3.format("%"))
+        .tickSize(4,0)
+        .tickPadding(0)
+        .ticks(4)
+        .scale(radius.copy().range([-innerRadius2, -outerRadius]))
+        .orient("right"));
+        
+        lgd.selectAll(".axis .tick")
+        .filter(function (d) { return d === 0;  })
+        .remove();
+               
+               lgd.selectAll("rect.rect1")
+               .transition()			
+                .duration(500)
+               .style("fill", colors[0])
+               .style("opacity", "0.8");
+               
+               lgd.selectAll("rect.rect2")
+               .transition()			
+                .duration(500)
+               .style("fill", colors[1])
+               .style("opacity", "0.8");
+               
+               lgd.selectAll("text.text1")
+               .transition()			
+                .duration(500)
+               .text(priority_order[0]);
+               
+               lgd.selectAll("text.text2")
+               .transition()			
+                .duration(500)
+               .text(priority_order[1]);
+               
+               lgd.selectAll("a.a1")
+               .transition()			
+               .duration(500)
+               .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[0] + "&proxdistance=5&rows=20&searchType=advanced");
+               
+               lgd.selectAll("a.a2")
+               .transition()			
+               .duration(500)
+               .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[1] + "&proxdistance=5&rows=20&searchType=advanced");
+               
+               lgd.selectAll("path.area")
+               .transition()			
+                .duration(500)
+               .attr("d", arealgd(Total[9].values))
+               .style("fill",colors[0]);
+               
+               lgd.selectAll("path.line")
+               .transition()			
+                .duration(500)
+                   .attr("d", linelgd(Total[9].values))
+                   .attr("stroke", colors[0]);
+               
+               lgd.selectAll("path.area2")
+               .transition()			
+                .duration(500)
+               .attr("d", area2lgd(Total[9].values))
+               .style("fill",colors[1]);
+
+               lgd.selectAll("path.line2")
+               .transition()			
+                .duration(500)
+                .attr("d", line2lgd(Total[9].values))
+                .attr("stroke", colors[1]);
+                
+                
+                for(var k =0; k < 16; k++){
+                  
+            
+                        svgStorage['svg'+k].selectAll("a.a1")
+                        .transition()			
+                        .duration(500)
+                        .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=" + Total[k].key + "&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[0] + "&proxdistance=5&rows=20&searchType=advanced");
+                        
+                        
+                        svgStorage['svg'+k].selectAll("path.area")
+                        .transition()			
+                        .duration(500)
+                        .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=" + Total[k].key + "&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[0] + "&proxdistance=5&rows=20&searchType=advanced")
+                        .attr("d", area(Total[k].values))
+                        .style("fill",colors[0]);
+                        
+                        svgStorage['svg'+k].selectAll("path.line")
+                        .transition()			
+                         .duration(500)
+                            .attr("d", line(Total[k].values))
+                            .attr("stroke", colors[0]);
+                        
+                            svgStorage['svg'+k].selectAll("a.a2")
+                            .transition()			
+                             .duration(500)
+                             .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=" + Total[k].key + "&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[1] + "&proxdistance=5&rows=20&searchType=advanced");
+                        
+                        
+                        svgStorage['svg'+k].selectAll("path.area2")
+                        .transition()			
+                         .duration(500)
+                         .attr("xlink:href", "http://chroniclingamerica.loc.gov/search/pages/results/?state=" + Total[k].key + "&dateFilterType=yearRange&date1=1836&date2=1922&proxtext=" + priority_order[1] + "&proxdistance=5&rows=20&searchType=advanced")
+                        .attr("d", area2(Total[k].values))
+                        .style("fill",colors[1]);
+
+                        svgStorage['svg'+k].selectAll("path.line2")
+                        .transition()			
+                         .duration(500)
+                            .attr("d", line2(Total[k].values))
+                            .attr("stroke", colors[1]);
+                        
+                            
+                          svgStorage['svg'+k].selectAll("text.lgdtxt")
+                          .transition()			
+                           .duration(500)
+                          .text(Total[k].key);
+                
+                };
+                
+         });      
+  
+    };
+        
+				
+		</script>
+				
+	</body>
+</html>
